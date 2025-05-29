@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spy Story</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: #111;
+      color: white;
+    }
+
+    button.choice-button {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #333;
+      color: white;
+      transition: background 0.3s ease;
+    }
+
+    button.choice-button:hover {
+      background: #555;
+    }
+
+    @media (hover: none) {
+      button.choice-button:hover {
+        background: #333; /* отключаем hover на телефоне */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ты входишь в штаб Atlas</h1>
+  <p>Что будешь делать?</p>
+
+  <button class="choice-button">Проверить терминалы</button>
+  <button class="choice-button">Подслушать разговор</button>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".choice-button");
+
+      buttons.forEach(button => {
+        button.addEventListener("click", (event) => {
+          // Показываем подтверждение только на телефонах
+          if (window.innerWidth <= 768) {
+            const confirmed = confirm("Ты уверен в выборе?");
+            if (!confirmed) {
+              event.preventDefault(); // Отменяем действие, если нет
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
